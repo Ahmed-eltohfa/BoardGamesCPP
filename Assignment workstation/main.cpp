@@ -8,9 +8,8 @@
 #include "Classes/FiveXFive/FiveXFive.cpp"
 
 using namespace std;
-
 int main()
 {
-    PyramicTicTacToe one;
+    cout << "hello";
     return 0;
 }
