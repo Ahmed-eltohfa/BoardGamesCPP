@@ -2,6 +2,8 @@
   "C_Cpp.errorSquiggles": "disabled",
   "files.associations": {
     "cctype": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "limits": "cpp",
+    "algorithm": "cpp"
   }
 }

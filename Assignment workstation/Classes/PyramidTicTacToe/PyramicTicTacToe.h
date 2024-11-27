@@ -10,6 +10,14 @@ class PyramidBoard : public Board<T>
 {
 public:
     PyramidBoard();
+    ~PyramidBoard()
+    {
+        for (int i = 0; i < this->rows; i++)
+        {
+            delete[] this->board[i];
+        }
+        delete[] this->board;
+    };
 
     bool update_board(int x, int y, T symbol);
 
@@ -35,6 +43,10 @@ public:
 template <typename T>
 class PyramidRandPlayer : public RandomPlayer<T>
 {
+private:
+    int columns;
+    int rows;
+
 public:
     PyramidRandPlayer() {};
     PyramidRandPlayer(T symbol);
