@@ -10,6 +10,10 @@
 using namespace std;
 int main()
 {
-    cout << "hello";
+    cout << "hello\n";
+    PyramidBoard<char> board;
+    PyramidRandPlayer<char> p1('X');
+    cout << p1.getsymbol() << "\n";
+    board.display_board();
     return 0;
 }

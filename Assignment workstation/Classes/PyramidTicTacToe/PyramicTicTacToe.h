@@ -27,7 +27,7 @@ class PyramidPlayer : public Player<T>
 {
 public:
     PyramidPlayer() {};
-    PyramidPlayer(string n, T symbol);
+    PyramidPlayer(string name, T symbol);
 
     void getmove(int &x, int &y);
 };
