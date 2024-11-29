@@ -151,7 +151,7 @@ template <typename T>
 X_O_Random_Player<T>::X_O_Random_Player(T symbol) : RandomPlayer<T>(symbol)
 {
     this->dimension = 3;
-    this->name = "Random Computer Player";
+    this->name= "Random Computer Player";
     srand(static_cast<unsigned int>(time(0))); // Seed the random number generator
 }
 
