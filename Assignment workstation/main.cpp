@@ -161,13 +161,13 @@ void WordsGameMainRun()
     }
 };
 
-
-void FourInRowGame(){
+void FourInRowGame()
+{
 
     int choice;
-    string player1Name,player2Name;
-    Player<char>* players[2];
-    Four_In_Row_Board<char> *B= new Four_In_Row_Board<char>();
+    string player1Name, player2Name;
+    Player<char> *players[2];
+    Four_In_Row_Board<char> *B = new Four_In_Row_Board<char>();
 
     cout << "Choose Player X type:\n";
     cout << "1. Human\n";
@@ -175,61 +175,55 @@ void FourInRowGame(){
     cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
-    if(choice == 1)
+    if (choice == 1)
     {
         // Set up player 1
         cout << "Enter Player X name: ";
         cin >> player1Name;
-        players[0]= new Four_In_Row_Player<char>(player1Name, 'X');
-
-    }else if(choice ==2)
+        players[0] = new Four_In_Row_Player<char>(player1Name, 'X');
+    }
+    else if (choice == 2)
     {
-        players[0]= new Four_In_Row_Random_Player<char>('X');
-    }else{
+        players[0] = new Four_In_Row_Random_Player<char>('X');
+    }
+    else
+    {
         cout << "Invalid choice for Player 1. Exiting the game.\n";
         return;
     }
-
-    
-    
 
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
     cout << "3. Smart Computer (AI)\n";
     cin >> choice;
-    
-    if(choice == 1)
+
+    if (choice == 1)
     {
         // Set up player 2
         cout << "Enter Player 2 name: ";
         cin >> player2Name;
-        players[1]= new Four_In_Row_Player<char>(player1Name, 'O');
-    }else if(choice ==2)
+        players[1] = new Four_In_Row_Player<char>(player1Name, 'O');
+    }
+    else if (choice == 2)
     {
-        players[1]= new Four_In_Row_Random_Player<char>('O');
-    }else{
+        players[1] = new Four_In_Row_Random_Player<char>('O');
+    }
+    else
+    {
         cout << "Invalid choice for Player 1. Exiting the game.\n";
         return;
     }
 
-
-    
-    
-
-
-    GameManager<char> FourInRowGameManager(B,players);
+    GameManager<char> FourInRowGameManager(B, players);
     FourInRowGameManager.run();
-
 };
-
-
 
 using namespace std;
 int main()
 {
     // WordsGameMainRun();
-    // return 0;
     FourInRowGame();
-    
+
+    return 0;
 }
