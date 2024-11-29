@@ -2,11 +2,6 @@
 #include <cctype>
 // -------------- Board --------------- //
 
-bool isLogical(int r, int c)
-{
-    return (r >= 0 && r < 3 && c >= 0 && c < 5);
-};
-
 template <typename T>
 PyramidBoard<T>::PyramidBoard()
 {
