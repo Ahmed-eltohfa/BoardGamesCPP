@@ -1,22 +1,22 @@
-#ifndef PYRAMICTICTACTOE_H
-#define PYRAMICTICTACTOE_H
+#ifndef WORDSTICTACTOE_H
+#define WORDSTICTACTOE_H
 
 #include "../../BoardGame_Classes.h"
+#include <vector>
 
 #pragma once
 
 template <typename T>
-class PyramidBoard : public Board<T>
+class WordsBoard : public Board<T>
 {
 private:
-    bool isLogical(int r, int c)
-    {
-        return (r >= 0 && r < 3 && c >= 0 && c < 5);
-    };
+    vector<string> words;
+    bool isLogical(int r, int c);
+    bool isWord(char one, char two, char three);
 
 public:
-    PyramidBoard();
-    ~PyramidBoard()
+    WordsBoard();
+    ~WordsBoard()
     {
         for (int i = 0; i < this->rows; i++)
         {
@@ -37,25 +37,22 @@ public:
 };
 
 template <typename T>
-class PyramidPlayer : public Player<T>
+class WordsPlayer : public Player<T>
 {
 public:
-    PyramidPlayer() {};
-    PyramidPlayer(string name, T symbol);
+    WordsPlayer() {};
+    WordsPlayer(string name, T symbol);
 
     void getmove(int &x, int &y);
 };
 
 template <typename T>
-class PyramidRandPlayer : public RandomPlayer<T>
+class WordsRandPlayer : public RandomPlayer<T>
 {
 private:
-    int columns;
-    int rows;
-
 public:
-    PyramidRandPlayer() {};
-    PyramidRandPlayer(T symbol);
+    WordsRandPlayer() {};
+    WordsRandPlayer(T symbol);
 
     void getmove(int &x, int &y);
 };

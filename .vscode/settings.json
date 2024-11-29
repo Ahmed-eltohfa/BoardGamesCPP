@@ -4,6 +4,9 @@
     "cctype": "cpp",
     "iostream": "cpp",
     "limits": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "iosfwd": "cpp",
+    "fstream": "cpp",
+    "vector": "cpp"
   }
 }
