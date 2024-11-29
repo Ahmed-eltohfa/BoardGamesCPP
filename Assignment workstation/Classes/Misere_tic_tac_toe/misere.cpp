@@ -36,6 +36,7 @@ bool Misere_board<T>::update_board(int x, int y, T mark)
         {
             this->n_moves++;
             this->board[x][y] = toupper(mark);
+            last = !last;
         }
 
         return true;
@@ -67,7 +68,6 @@ bool Misere_board<T>::reverse()
         if ((this->board[i][0] == this->board[i][1] && this->board[i][1] == this->board[i][2] && this->board[i][0] != 0) ||
             (this->board[0][i] == this->board[1][i] && this->board[1][i] == this->board[2][i] && this->board[0][i] != 0))
         {
-            counter++;
             return true;
         }
     }
@@ -76,7 +76,6 @@ bool Misere_board<T>::reverse()
     if ((this->board[0][0] == this->board[1][1] && this->board[1][1] == this->board[2][2] && this->board[0][0] != 0) ||
         (this->board[0][2] == this->board[1][1] && this->board[1][1] == this->board[2][0] && this->board[0][2] != 0))
     {
-        counter++;
         return true;
     }
     return false;
@@ -84,7 +83,7 @@ bool Misere_board<T>::reverse()
 template <typename T>
 bool Misere_board<T>::is_win()
 {
-    return (reverse() && counter == 2);
+    return (reverse());
 }
 
 template <typename T>

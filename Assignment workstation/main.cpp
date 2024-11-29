@@ -238,5 +238,10 @@ void misere()
 using namespace std;
 int main()
 {
+    int choice;
+    Player<char> *players[2];
+    Misere_board<char> *B = new Misere_board<char>;
+    string playerXName, player2Name;
+    misere();
     return 0;
 }

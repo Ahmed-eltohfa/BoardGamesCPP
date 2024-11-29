@@ -5,12 +5,14 @@
 
 #pragma once
 
+bool winRRev=false;
+
 template <typename T>
 class Misere_board : public Board<T>
 {
 public:
-    int counter = 0;
     Misere_board();
+    bool last = false;
     bool update_board(int x, int y, T symbol);
     void display_board();
     bool is_win();
