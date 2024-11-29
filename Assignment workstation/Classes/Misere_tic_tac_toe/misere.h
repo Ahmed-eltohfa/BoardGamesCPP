@@ -1,41 +1,42 @@
-#ifndef FIVEXFIVE_H
-#define FIVEXFIVE_H
+#ifndef MISERE_H
+#define MISERE_H
 
 #include "../../BoardGame_Classes.h"
 
 #pragma once
-bool winRev = false;
+
+bool winRRev=false;
+
 template <typename T>
-class FiveXFive_board : public Board<T>
+class Misere_board : public Board<T>
 {
 public:
+    Misere_board();
     bool last = false;
-    FiveXFive_board();
     bool update_board(int x, int y, T symbol);
     void display_board();
-    int count_lines(T symbol);
     bool is_win();
+    bool reverse();
     bool is_draw();
     bool game_is_over();
-    ~FiveXFive_board();
+    ~Misere_board();
 
 private:
 };
 
 template <typename T>
-class FiveXFive_Player : public Player<T>
+class Misere_Player : public Player<T>
 {
-
 public:
-    FiveXFive_Player(string name, T symbol);
+    Misere_Player(string name, T symbol);
     void getmove(int &x, int &y);
 };
 
 template <typename T>
-class FiveXFive_Random_Player : public RandomPlayer<T>
+class Misere_Random_Player : public RandomPlayer<T>
 {
 public:
-    FiveXFive_Random_Player(T symbol);
+    Misere_Random_Player(T symbol);
     void getmove(int &x, int &y);
 };
 
