@@ -10,6 +10,8 @@
 #include "Classes/WordsTicTacToe/WordsTicTacToe.cpp"
 #include "Classes/NumericalTicTacToe/NumericalTicTacToe.h"
 #include "Classes/NumericalTicTacToe/NumericalTicTacToe.cpp"
+#include "Classes/sus/sus.h"
+#include "Classes/sus/sus.cpp"
 
 #include "Classes/Misere_tic_tac_toe/misere.h"
 #include "Classes/Misere_tic_tac_toe/misere.cpp"
@@ -435,13 +437,78 @@ void NumericalTicTacToeGame(){
 
     
 }
+
+void Sus(){
+    
+    int choice;
+    string player1Name, player2Name;
+    Player<char> *players[2];
+    Sus_Board<char> *B = new Sus_Board<char>();
+
+    cout << "Choose Player X type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        // Set up player 1
+        cout << "Enter Player X name: ";
+        cin >> player1Name;
+        players[0] = new Sus_Player<char>(player1Name, 'S');
+    }
+    else if (choice == 2)
+    {
+        players[0] = new Sus_Random_Player<char>('S');
+    }
+    else
+    {
+        cout << "Invalid choice for Player 1. Exiting the game.\n";
+        return;
+    }
+
+    cout << "Choose Player 2 type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        // Set up player 2
+        cout << "Enter Player 2 name: ";
+        cin >> player2Name;
+        players[1] = new Sus_Player<char>(player1Name, 'U');
+    }
+    else if (choice == 2)
+    {
+        players[1] = new Sus_Random_Player<char>('U');
+    }
+    else
+    {
+        cout << "Invalid choice for Player 1. Exiting the game.\n";
+        return;
+    }
+
+    GameManager<char> SusGameManager(B, players);
+    SusGameManager.run();
+
+    // Clean up
+    delete B;
+    for (int i = 0; i < 2; ++i)
+    {
+        delete players[i];
+    }
+}
+
 using namespace std;
 int main()
 {
     // WordsGameMainRun();
     // FourInRowGame();
-    NumericalTicTacToeGame();
-    
+    // NumericalTicTacToeGame();
+    Sus();
     // int choice;
     // Player<char> *players[2];
     // Four_In_Row_Board<char> *B = new Four_In_Row_Board<char>;
