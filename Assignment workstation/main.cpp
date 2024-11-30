@@ -9,6 +9,11 @@
 #include "Classes/FiveXFive/FiveXFive.cpp"
 #include "Classes/WordsTicTacToe/WordsTicTacToe.h"
 #include "Classes/WordsTicTacToe/WordsTicTacToe.cpp"
+#include "Classes/NumericalTicTacToe/NumericalTicTacToe.h"
+#include "Classes/NumericalTicTacToe/NumericalTicTacToe.cpp"
+#include "Classes/sus/sus.h"
+#include "Classes/sus/sus.cpp"
+
 #include "Classes/Misere_tic_tac_toe/misere.h"
 #include "Classes/Misere_tic_tac_toe/misere.cpp"
 #include <algorithm>
@@ -217,6 +222,13 @@ void FourInRowGame()
 
     GameManager<char> FourInRowGameManager(B, players);
     FourInRowGameManager.run();
+
+    // Clean up
+    delete B;
+    for (int i = 0; i < 2; ++i)
+    {
+        delete players[i];
+    }
 };
 
 void FiveXFive()
@@ -360,6 +372,128 @@ void misere()
     // cout << "output " << B->is_draw();
     // cout << "output " << B->game_is_over();
     misereGame.run();
+
+    // Clean up
+    delete B;
+    for (int i = 0; i < 2; ++i)
+    {
+        delete players[i];
+    }
+}
+
+void NumericalTicTacToeGame()
+{
+    int choice;
+    string player1Name, player2Name;
+    Player<int> *players[2];
+    Numerical_Tic_Tac_Toe_Board<int> *B = new Numerical_Tic_Tac_Toe_Board<int>();
+
+    cout << "Choose Player X type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        // Set up player 1
+        cout << "Enter Player X name: ";
+        cin >> player1Name;
+        players[0] = new Numerical_Tic_Tac_Toe_Player<int>(player1Name, 1);
+    }
+    else if (choice == 2)
+    {
+        players[0] = new Numerical_Tic_Tac_Toe_Random_Player<int>(1);
+    }
+    else
+    {
+        cout << "Invalid choice for Player 1. Exiting the game.\n";
+        return;
+    }
+
+    cout << "Choose Player 2 type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        // Set up player 2
+        cout << "Enter Player 2 name: ";
+        cin >> player2Name;
+        players[1] = new Numerical_Tic_Tac_Toe_Player<int>(player2Name, 1);
+    }
+    else if (choice == 2)
+    {
+        players[1] = new Numerical_Tic_Tac_Toe_Random_Player<int>(1);
+    }
+    else
+    {
+        cout << "Invalid choice for Player 1. Exiting the game.\n";
+        return;
+    }
+
+    GameManager<int> NumericalTicTacToeGameManager(B, players);
+    NumericalTicTacToeGameManager.run();
+}
+
+void Sus()
+{
+
+    int choice;
+    string player1Name, player2Name;
+    Player<char> *players[2];
+    Sus_Board<char> *B = new Sus_Board<char>();
+
+    cout << "Choose Player X type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        // Set up player 1
+        cout << "Enter Player X name: ";
+        cin >> player1Name;
+        players[0] = new Sus_Player<char>(player1Name, 'S');
+    }
+    else if (choice == 2)
+    {
+        players[0] = new Sus_Random_Player<char>('S');
+    }
+    else
+    {
+        cout << "Invalid choice for Player 1. Exiting the game.\n";
+        return;
+    }
+
+    cout << "Choose Player 2 type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        // Set up player 2
+        cout << "Enter Player 2 name: ";
+        cin >> player2Name;
+        players[1] = new Sus_Player<char>(player1Name, 'U');
+    }
+    else if (choice == 2)
+    {
+        players[1] = new Sus_Random_Player<char>('U');
+    }
+    else
+    {
+        cout << "Invalid choice for Player 1. Exiting the game.\n";
+        return;
+    }
+
+    GameManager<char> SusGameManager(B, players);
+    SusGameManager.run();
 
     // Clean up
     delete B;
