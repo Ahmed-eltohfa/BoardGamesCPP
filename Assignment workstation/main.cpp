@@ -2,6 +2,7 @@
 #include "BoardGame_Classes.h"
 #include "Classes/PyramidTicTacToe/PyramicTicTacToe.h"
 #include "Classes/PyramidTicTacToe/PyramicTicTacToe.cpp"
+#include "Classes/PyramidTicTacToe/PyramidAi.h"
 #include "Classes/FourInRow/FourInRow.h"
 #include "Classes/FourInRow/FourInRow.cpp"
 #include "Classes/FiveXFive/FiveXFive.h"
@@ -10,7 +11,7 @@
 #include "Classes/WordsTicTacToe/WordsTicTacToe.cpp"
 #include "Classes/Misere_tic_tac_toe/misere.h"
 #include "Classes/Misere_tic_tac_toe/misere.cpp"
-#include <algorithm> // For std::max and std::min
+#include <algorithm>
 
 void pyramidGameMainRun()
 {
@@ -38,10 +39,10 @@ void pyramidGameMainRun()
     case 2:
         players[0] = new PyramidRandPlayer<char>('X');
         break;
-    // case 3:
-    //     players[0] = new X_O_MinMax_Player<char>('X');
-    //     players[0]->setBoard(B);
-    //     break;
+    case 3:
+        players[0] = new PyramidAi<char>('X');
+        players[0]->setBoard(B);
+        break;
     default:
         cout << "Invalid choice for Player 1. Exiting the game.\n";
         return;
@@ -64,10 +65,10 @@ void pyramidGameMainRun()
     case 2:
         players[1] = new PyramidRandPlayer<char>('O');
         break;
-    // case 3:
-    //     players[1] = new X_O_MinMax_Player<char>('O');
-    //     players[1]->setBoard(B);
-    //     break;
+    case 3:
+        players[1] = new PyramidAi<char>('O');
+        players[1]->setBoard(B);
+        break;
     default:
         cout << "Invalid choice for Player 2. Exiting the game.\n";
         return;
@@ -75,8 +76,6 @@ void pyramidGameMainRun()
 
     // Create the game manager and run the game
     GameManager<char> pyramidGame(B, players);
-    // cout << "output " << B->is_draw();
-    // cout << "output " << B->game_is_over();
     pyramidGame.run();
 
     // Clean up
@@ -373,10 +372,6 @@ void misere()
 using namespace std;
 int main()
 {
-    int choice;
-    Player<char> *players[2];
-    Four_In_Row_Board<char> *B = new Four_In_Row_Board<char>;
-    string playerXName, player2Name;
-    FourInRowGame();
+    pyramidGameMainRun();
     return 0;
 }

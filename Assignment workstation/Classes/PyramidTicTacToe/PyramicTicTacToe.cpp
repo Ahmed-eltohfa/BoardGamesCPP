@@ -28,9 +28,10 @@ PyramidBoard<T>::PyramidBoard()
 template <typename T>
 bool PyramidBoard<T>::update_board(int x, int y, T symbol)
 {
-    if (isLogical(x, y) && this->board[x][y] == ' ')
+    if ((isLogical(x, y) && this->board[x][y] == ' ') || symbol == ' ')
     {
-        this->board[x][y] = symbol;
+        this->board[x][y] = toupper(symbol);
+        this->n_moves++;
         return true;
     }
 
@@ -50,6 +51,7 @@ void PyramidBoard<T>::display_board()
         }
         cout << " |\n";
     }
+    cout << "\n";
 }
 
 template <typename T>
@@ -63,22 +65,22 @@ bool PyramidBoard<T>::is_win()
             // cout << "i and j => " << i << " " << j << " " << temp[i][j] << "\n";
             if (temp[i][j] != ' ' && isLogical(i + 1, j) && isLogical(i + 2, j) && temp[i][j] == temp[i + 1][j] && temp[i][j] == temp[i + 2][j]) // vertical win
             {
-                cout << "vertical win\n";
+                // cout << "vertical win\n";
                 return true;
             }
             if (temp[i][j] != ' ' && isLogical(i, j + 1) && isLogical(i, j + 2) && temp[i][j] == temp[i][j + 1] && temp[i][j] == temp[i][j + 2]) // horizontal win
             {
-                cout << "horizontal win\n";
+                // cout << "horizontal win\n";
                 return true;
             }
             if (temp[i][j] != ' ' && isLogical(i + 1, j + 1) && isLogical(i + 2, j + 2) && temp[i][j] == temp[i + 1][j + 1] && temp[i][j] == temp[i + 2][j + 2]) // r-diagonal win
             {
-                cout << "r-diagonal win\n";
+                // cout << "r-diagonal win\n";
                 return true;
             }
             if (temp[i][j] != ' ' && isLogical(i + 1, j - 1) && isLogical(i + 2, j - 2) && temp[i][j] == temp[i + 1][j - 1] && temp[i][j] == temp[i + 2][j - 2]) // l-diagonal win
             {
-                cout << "l-diagonal win\n";
+                // cout << "l-diagonal win\n";
                 return true;
             }
         }
