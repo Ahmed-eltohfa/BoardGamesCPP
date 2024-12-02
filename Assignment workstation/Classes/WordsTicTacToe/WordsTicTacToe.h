@@ -2,15 +2,16 @@
 #define WORDSTICTACTOE_H
 
 #include "../../BoardGame_Classes.h"
-#include <vector>
-
+// #include <vector>
+#include <unordered_set>
 #pragma once
 
 template <typename T>
 class WordsBoard : public Board<T>
 {
 private:
-    vector<string> words;
+    // vector<string> words;
+    std::unordered_set<string> words;
     bool isLogical(int r, int c);
     bool isWord(char one, char two, char three);
 

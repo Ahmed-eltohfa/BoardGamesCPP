@@ -18,7 +18,7 @@ bool WordsBoard<T>::isWord(char one, char two, char three)
     wordToFind += (char)toupper(one);
     wordToFind += (char)toupper(two);
     wordToFind += (char)toupper(three);
-    auto it = find(words.begin(), words.end(), wordToFind);
+    auto it = words.find(wordToFind);
     if (it != words.end())
     {
         return true;
@@ -26,7 +26,7 @@ bool WordsBoard<T>::isWord(char one, char two, char three)
     else
     {
         reverse(wordToFind.begin(), wordToFind.end());
-        auto it2 = find(words.begin(), words.end(), wordToFind);
+        auto it2 = words.find(wordToFind);
         return (it2 != words.end());
     }
 }
@@ -54,7 +54,7 @@ WordsBoard<T>::WordsBoard()
     {
         while (inputFile >> word)
         {
-            this->words.push_back(word);
+            this->words.insert(word);
         }
         inputFile.close();
     }
@@ -67,9 +67,15 @@ WordsBoard<T>::WordsBoard()
 template <typename T>
 bool WordsBoard<T>::update_board(int x, int y, T symbol)
 {
+    if ((isLogical(x, y) && symbol == ' '))
+    {
+        this->board[x][y] = toupper(symbol);
+        return true;
+    }
+
     if (isLogical(x, y) && this->board[x][y] == ' ')
     {
-        this->board[x][y] = symbol;
+        this->board[x][y] = toupper(symbol);
         return true;
     }
 
@@ -107,22 +113,22 @@ bool WordsBoard<T>::is_win()
             // cout << "i and j => " << i << " " << j << " " << temp[i][j] << "\n";
             if (isLogical(i + 1, j) && isLogical(i + 2, j) && isWord(temp[i][j], temp[i + 1][j], temp[i + 2][j]))
             {
-                cout << "vertical win\n";
+                // cout << "vertical win\n";
                 return true;
             }
             if (isLogical(i, j + 1) && isLogical(i, j + 2) && isWord(temp[i][j], temp[i][j + 1], temp[i][j + 2])) // horizontal win
             {
-                cout << "horizontal win\n";
+                // cout << "horizontal win\n";
                 return true;
             }
             if (isLogical(i + 1, j + 1) && isLogical(i + 2, j + 2) && isWord(temp[i][j], temp[i + 1][j + 1], temp[i + 2][j + 2])) // r-diagonal win
             {
-                cout << "r-diagonal win\n";
+                // cout << "r-diagonal win\n";
                 return true;
             }
             if (isLogical(i + 1, j - 1) && isLogical(i + 2, j - 2) && isWord(temp[i][j], temp[i + 1][j - 1], temp[i + 2][j - 2])) // l-diagonal win
             {
-                cout << "l-diagonal win\n";
+                // cout << "l-diagonal win\n";
                 return true;
             }
         }
@@ -169,7 +175,7 @@ void WordsPlayer<T>::getmove(int &x, int &y)
     char letter;
     cout << "\n Please enter the letter to insert: ";
     cin >> letter;
-    this->symbol = letter;
+    this->symbol = toupper(letter);
 }
 
 // -------------- Rand Player --------------- //
@@ -188,6 +194,6 @@ void WordsRandPlayer<T>::getmove(int &x, int &y)
 {
     x = rand() % this->dimension; // Random number between 0 and 2
     y = rand() % this->dimension;
-    char letter = (rand() & 26) + 97;
+    char letter = (rand() % 26) + 97;
     this->symbol = letter;
 }

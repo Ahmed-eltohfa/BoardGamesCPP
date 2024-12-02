@@ -9,6 +9,7 @@
 #include "Classes/FiveXFive/FiveXFive.cpp"
 #include "Classes/WordsTicTacToe/WordsTicTacToe.h"
 #include "Classes/WordsTicTacToe/WordsTicTacToe.cpp"
+#include "Classes/WordsTicTacToe/WordsAi.h"
 #include "Classes/NumericalTicTacToe/NumericalTicTacToe.h"
 #include "Classes/NumericalTicTacToe/NumericalTicTacToe.cpp"
 #include "Classes/sus/sus.h"
@@ -117,10 +118,10 @@ void WordsGameMainRun()
     case 2:
         players[0] = new WordsRandPlayer<char>('X');
         break;
-    // case 3:
-    //     players[0] = new X_O_MinMax_Player<char>('X');
-    //     players[0]->setBoard(B);
-    //     break;
+    case 3:
+        players[0] = new WordsAi<char>('X');
+        players[0]->setBoard(B);
+        break;
     default:
         cout << "Invalid choice for Player 1. Exiting the game.\n";
         return;
@@ -143,10 +144,10 @@ void WordsGameMainRun()
     case 2:
         players[1] = new WordsRandPlayer<char>('O');
         break;
-    // case 3:
-    //     players[1] = new X_O_MinMax_Player<char>('O');
-    //     players[1]->setBoard(B);
-    //     break;
+    case 3:
+        players[1] = new WordsAi<char>('O');
+        players[1]->setBoard(B);
+        break;
     default:
         cout << "Invalid choice for Player 2. Exiting the game.\n";
         return;
@@ -506,6 +507,27 @@ void Sus()
 using namespace std;
 int main()
 {
-    pyramidGameMainRun();
+    // cout << "tamam bitch\n";
+    // WordsBoard<char> b;
+    // b.display_board();
+    WordsGameMainRun();
+    // cout << "g";
+    // int z;
+    // cin >> z;
+    // WordsBoard<char> *b = new WordsBoard<char>();
+    // b->display_board();
+    // b->update_board(0, 0, 'c');
+    // b->update_board(2, 1, 't');
+    // // b->update_board(2, 2, 't');
+    // b->display_board();
+    // // b->update_board(1, 1, ' ');
+    // // b->display_board();
+
+    // WordsAi<char> p('a');
+    // p.setBoard(b);
+    // int x, y;
+    // p.getmove(x, y);
+    // cout << x << " " << y << " " << p.getsymbol() << "\n";
+    // b->display_board();
     return 0;
 }
