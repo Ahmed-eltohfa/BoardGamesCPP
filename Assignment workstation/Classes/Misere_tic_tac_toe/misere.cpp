@@ -36,9 +36,7 @@ bool Misere_board<T>::update_board(int x, int y, T mark)
         {
             this->n_moves++;
             this->board[x][y] = toupper(mark);
-            last = !last;
         }
-
         return true;
     }
     return false;
@@ -61,7 +59,7 @@ void Misere_board<T>::display_board()
 }
 
 template <typename T>
-bool Misere_board<T>::reverse()
+bool Misere_board<T>::is_win()
 {
     for (int i = 0; i < this->rows; i++)
     {
@@ -80,11 +78,6 @@ bool Misere_board<T>::reverse()
     }
     return false;
 }
-template <typename T>
-bool Misere_board<T>::is_win()
-{
-    return (reverse());
-}
 
 template <typename T>
 bool Misere_board<T>::is_draw()
@@ -101,6 +94,7 @@ bool Misere_board<T>::game_is_over()
 template <typename T>
 Misere_board<T>::~Misere_board()
 {
+
     for (int i = 0; i < this->rows; ++i)
     {
         delete[] this->board[i];
@@ -119,10 +113,10 @@ inline void Misere_Player<T>::getmove(int &x, int &y)
 }
 
 template <typename T>
-Misere_Random_Player<T>::Misere_Random_Player(T symbol) : RandomPlayer<T>(symbol)
+Misere_Random_Player<T>::Misere_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
 {
     this->dimension = 3;
-    this->name = "Random Computer Player";
+    this->name = name;
     srand(static_cast<unsigned int>(time(0)));
 }
 
