@@ -447,7 +447,6 @@ void Sus()
     string player1Name, player2Name;
     Player<char> *players[2];
     Sus_Board<char> *B = new Sus_Board<char>();
-
     cout << "Choose Player X type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
@@ -459,7 +458,8 @@ void Sus()
         // Set up player 1
         cout << "Enter Player X name: ";
         cin >> player1Name;
-        players[0] = new Sus_Player<char>(player1Name, 'S');
+        B->name1 = player1Name;
+        players[0] = new Sus_Player<char>("", 'S');
     }
     else if (choice == 2)
     {
@@ -482,7 +482,8 @@ void Sus()
         // Set up player 2
         cout << "Enter Player 2 name: ";
         cin >> player2Name;
-        players[1] = new Sus_Player<char>(player1Name, 'U');
+        B->name1 = player1Name;
+        players[1] = new Sus_Player<char>("", 'U');
     }
     else if (choice == 2)
     {
@@ -511,7 +512,7 @@ int main()
     // cout << "tamam bitch\n";
     // WordsBoard<char> b;
     // b.display_board();
-    misere();
+    Sus();
     // Misere_board<char> *b = new Misere_board<char>();
     // b->display_board();
     // b->update_board(0, 0, 'x');
