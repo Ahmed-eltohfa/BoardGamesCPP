@@ -14,6 +14,8 @@
 #include "Classes/NumericalTicTacToe/NumericalTicTacToe.cpp"
 #include "Classes/sus/sus.h"
 #include "Classes/sus/sus.cpp"
+#include "Classes/UltimateX_O/UltimateX_O.h"
+#include "Classes/UltimateX_O/UltimateX_O.cpp"
 
 #include "Classes/Misere_tic_tac_toe/misere.h"
 #include "Classes/Misere_tic_tac_toe/misere.cpp"
@@ -504,13 +506,101 @@ void Sus()
     }
 }
 
+void ultimateX_OGameMainRun()
+{
+    int choice;
+    Player<char> *players[2];
+    UltimateX_OBoard<char> *B = new UltimateX_OBoard<char>(true);
+    string playerXName, player2Name;
+
+    cout << "Welcome to FCAI Ultimate Tic Tac Toe Game. :)\n";
+
+    // Set up player 1
+    cout << "Enter Player 1 name: ";
+    cin >> playerXName;
+    cout << "Choose Player 2 type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        players[0] = new UltimateX_OPlayer<char>(playerXName, 'X');
+        break;
+    case 2:
+        players[0] = new UltimateX_ORandPlayer<char>('X');
+        break;
+    // case 3:
+    //     players[0] = new UltimateX_OAi<char>('X');
+    //     players[0]->setBoard(B);
+    //     break;
+    default:
+        cout << "Invalid choice for Player 1. Exiting the game.\n";
+        return;
+    }
+
+    // Set up player 2
+    cout << "Enter Player 2 name: ";
+    cin >> player2Name;
+    cout << "Choose Player 2 type:\n";
+    cout << "1. Human\n";
+    cout << "2. Random Computer\n";
+    cout << "3. Smart Computer (AI)\n";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        players[1] = new UltimateX_OPlayer<char>(player2Name, 'O');
+        break;
+    case 2:
+        players[1] = new UltimateX_ORandPlayer<char>('O');
+        break;
+    // case 3:
+    //     players[1] = new UltimateX_OAi<char>('O');
+    //     players[1]->setBoard(B);
+    //     break;
+    default:
+        cout << "Invalid choice for Player 2. Exiting the game.\n";
+        return;
+    }
+
+    // Create the game manager and run the game
+    GameManager<char> pyramidGame(B, players);
+    pyramidGame.run();
+
+    // Clean up
+    delete B;
+    for (int i = 0; i < 2; ++i)
+    {
+        delete players[i];
+    }
+}
+
 using namespace std;
 int main()
 {
+    ultimateX_OGameMainRun();
+    // UltimateX_OBoard<char> *b = new UltimateX_OBoard<char>(true);
+    // b->update_board(0, 0, 'X');
+    // b->update_board(0, 8, 'o');
+    // b->update_board(1, 7, 'o');
+    // b->update_board(2, 6, 'o');
+    // b->update_board(2, 6, 'o');
+    // b->update_board(2, 6, 'o');
+    // b->update_board(2, 6, 'o');
+    // b->update_board(2, 6, 'o');
+    // b->update_board(2, 6, 'o');
+    // b->display_board();
+    // b->update_board(2, 6, ' ');
+    // b->display_board();
+    // cout << b.is_win();
     // cout << "tamam bitch\n";
     // WordsBoard<char> b;
     // b.display_board();
-    WordsGameMainRun();
+    // WordsGameMainRun();
     // cout << "g";
     // int z;
     // cin >> z;
@@ -522,6 +612,8 @@ int main()
     // b->display_board();
     // // b->update_board(1, 1, ' ');
     // // b->display_board();
+
+    // delete b;
 
     // WordsAi<char> p('a');
     // p.setBoard(b);
