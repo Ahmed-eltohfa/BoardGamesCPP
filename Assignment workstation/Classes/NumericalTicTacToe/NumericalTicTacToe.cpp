@@ -200,7 +200,7 @@ Numerical_Tic_Tac_Toe_Random_Player<T>::Numerical_Tic_Tac_Toe_Random_Player(T sy
 
 template <typename T>
 void Numerical_Tic_Tac_Toe_Random_Player<T>::getmove(int &x, int &y) {
-    srand(static_cast<unsigned>(time(0)));
+    
     // Randomly generate x and y coordinates
     x = rand() % 3;
     y = rand() % 3;

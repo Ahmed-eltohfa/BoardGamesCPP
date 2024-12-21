@@ -183,7 +183,7 @@ Four_In_Row_Random_Player<T>::Four_In_Row_Random_Player(T symbol) : RandomPlayer
 template <typename T>
 void  Four_In_Row_Random_Player<T>::getmove(int &x, int &y)
 {
-    srand(static_cast<unsigned>(time(0)));
+    
 
     // Generate a random number between 0 and 6
     y= rand() % 7;
