@@ -5,6 +5,9 @@
 
 #pragma once
 bool winRev = false;
+bool AIundo = false;
+bool AIisX = true;
+int dif1 = 0;
 template <typename T>
 class FiveXFive_board : public Board<T>
 {

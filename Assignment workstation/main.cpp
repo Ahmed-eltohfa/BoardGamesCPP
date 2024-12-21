@@ -7,6 +7,8 @@
 #include "Classes/FourInRow/FourInRow.cpp"
 #include "Classes/FiveXFive/FiveXFive.h"
 #include "Classes/FiveXFive/FiveXFive.cpp"
+// #include "Classes/FiveXFive/FiveXFiveAI.h"
+
 #include "Classes/WordsTicTacToe/WordsTicTacToe.h"
 #include "Classes/WordsTicTacToe/WordsTicTacToe.cpp"
 #include "Classes/WordsTicTacToe/WordsAi.h"
@@ -181,7 +183,7 @@ void FourInRowGame()
     cout << "Choose Player X type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     if (choice == 1)
@@ -204,7 +206,7 @@ void FourInRowGame()
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     if (choice == 1)
@@ -250,7 +252,7 @@ void FiveXFive()
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     switch (choice)
@@ -262,7 +264,7 @@ void FiveXFive()
         players[0] = new FiveXFive_Random_Player<char>('X');
         break;
     // case 3:
-    //     players[0] = new X_O_MinMax_Player<char>('X');
+    //     players[0] = new FIVEXFIVE_AI_Player<char>(playerXName, 'X');
     //     players[0]->setBoard(B);
     //     break;
     default:
@@ -276,7 +278,7 @@ void FiveXFive()
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     switch (choice)
@@ -288,7 +290,7 @@ void FiveXFive()
         players[1] = new FiveXFive_Random_Player<char>('O');
         break;
     // case 3:
-    //     players[1] = new X_O_MinMax_Player<char>('O');
+    //     players[1] = new FIVEXFIVE_AI_Player<char>(player2Name, 'O');
     //     players[1]->setBoard(B);
     //     break;
     default:
@@ -395,7 +397,7 @@ void NumericalTicTacToeGame()
     cout << "Choose Player X type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     if (choice == 1)
@@ -418,7 +420,7 @@ void NumericalTicTacToeGame()
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     if (choice == 1)
@@ -581,47 +583,46 @@ void ultimateX_OGameMainRun()
     }
 }
 
+struct Game
+{
+    string name;
+    void (*run)();
+};
+void displayMenu(const vector<Game> &games)
+{
+    cout << "Welcome to FCAI Board Games Collection!\n";
+    cout << "Please choose a game to play:\n";
+    for (int i = 0; i < games.size(); ++i)
+    {
+        cout << i + 1 << ". " << games[i].name << endl;
+    }
+    cout << "0. Exit\n";
+}
 using namespace std;
 int main()
 {
-    ultimateX_OGameMainRun();
-    // UltimateX_OBoard<char> *b = new UltimateX_OBoard<char>(true);
-    // b->update_board(0, 0, 'X');
-    // b->update_board(0, 8, 'o');
-    // b->update_board(1, 7, 'o');
-    // b->update_board(2, 6, 'o');
-    // b->update_board(2, 6, 'o');
-    // b->update_board(2, 6, 'o');
-    // b->update_board(2, 6, 'o');
-    // b->update_board(2, 6, 'o');
-    // b->update_board(2, 6, 'o');
-    // b->display_board();
-    // b->update_board(2, 6, ' ');
-    // b->display_board();
-    // cout << b.is_win();
-    // cout << "tamam bitch\n";
-    // WordsBoard<char> b;
-    // b.display_board();
-    // WordsGameMainRun();
-    // cout << "g";
-    // int z;
-    // cin >> z;
-    // WordsBoard<char> *b = new WordsBoard<char>();
-    // b->display_board();
-    // b->update_board(0, 0, 'x');
-    // b->update_board(0, 2, 'x');
-    // b->update_board(1, 1, 'o');
-    // b->update_board(1, 0, 'o');
-    // b->display_board();
-    // // b->update_board(1, 1, ' ');
-    // // b->display_board();
-
-    // delete b;
-
-    // WordsAi<char> p('a');
-    // p.setBoard(b);
-    // int x, y;
-    // p.getmove(x, y);
-    // cout << x << " " << y << " " << p.getsymbol() << "\n";
+    vector<Game> games = {{"Pyramid Tic Tac Toe", pyramidGameMainRun},
+                          {"Words Tic Tac Toe", WordsGameMainRun},
+                          {"Four In a Row", FourInRowGame},
+                          {"FiveXFive Tic Tac Toe", FiveXFive},
+                          {"Misere Tic Tac Toe", misere},
+                          {"Numerical Tic Tac Toe", NumericalTicTacToeGame},
+                          {"Sus Tic Tac Toe", Sus},
+                          {"Ultimate X_O", ultimateX_OGameMainRun}};
+    int choice;
+    do
+    {
+        displayMenu(games);
+        cin >> choice;
+        if (choice > 0 && choice <= games.size())
+        {
+            games[choice - 1].run();
+        }
+        else if (choice != 0)
+        {
+            cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 0);
+    cout << "Thanks for playing! Goodbye!\n";
     return 0;
 }
