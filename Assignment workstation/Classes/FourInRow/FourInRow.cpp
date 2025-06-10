@@ -162,7 +162,7 @@ Four_In_Row_Player<T>::Four_In_Row_Player(string name, T symbol) : Player<T>(nam
 template <typename T>
 void Four_In_Row_Player<T>::getmove(int &x, int &y)
 {
-    cout << "\nenter the coloum of coloum u want\n";
+    cout << "\nenter the number of column u want\n";
     cin >> y;
 }
 /////////////////////////////////////// end player IMPLEMENTATION
@@ -183,7 +183,7 @@ Four_In_Row_Random_Player<T>::Four_In_Row_Random_Player(T symbol) : RandomPlayer
 template <typename T>
 void  Four_In_Row_Random_Player<T>::getmove(int &x, int &y)
 {
-    srand(static_cast<unsigned>(time(0)));
+    
 
     // Generate a random number between 0 and 6
     y= rand() % 7;
