@@ -7,7 +7,7 @@
 #include "Classes/FourInRow/FourInRow.cpp"
 #include "Classes/FiveXFive/FiveXFive.h"
 #include "Classes/FiveXFive/FiveXFive.cpp"
-// #include "Classes/FiveXFive/FiveXFiveAI.h"
+#include "Classes/FiveXFive/FiveXFiveAI.h"
 
 #include "Classes/WordsTicTacToe/WordsTicTacToe.h"
 #include "Classes/WordsTicTacToe/WordsTicTacToe.cpp"
@@ -160,8 +160,6 @@ void WordsGameMainRun()
 
     // Create the game manager and run the game
     GameManager<char> wordsGame(B, players);
-    // cout << "output " << B->is_draw();
-    // cout << "output " << B->game_is_over();
     wordsGame.run();
 
     // Clean up
@@ -248,25 +246,25 @@ void FiveXFive()
 
     // Set up player 1
     cout << "Enter Player 1 name: ";
-    cin >> playerXName;
+    cin >> B->name1;
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    // cout << "3. Smart Computer (AI)\n";
+    cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     switch (choice)
     {
     case 1:
-        players[0] = new FiveXFive_Player<char>(playerXName, 'X');
+        players[0] = new FiveXFive_Player<char>("", 'X');
         break;
     case 2:
         players[0] = new FiveXFive_Random_Player<char>('X');
         break;
-    // case 3:
-    //     players[0] = new FIVEXFIVE_AI_Player<char>(playerXName, 'X');
-    //     players[0]->setBoard(B);
-    //     break;
+    case 3:
+        players[0] = new FIVEXFIVE_AI_Player<char>(" ", 'X');
+        players[0]->setBoard(B);
+        break;
     default:
         cout << "Invalid choice for Player 1. Exiting the game.\n";
         return;
@@ -274,34 +272,33 @@ void FiveXFive()
 
     // Set up player 2
     cout << "Enter Player 2 name: ";
-    cin >> player2Name;
+    cin >> B->name2;
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    // cout << "3. Smart Computer (AI)\n";
+    cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     switch (choice)
     {
     case 1:
-        players[1] = new FiveXFive_Player<char>(player2Name, 'O');
+        players[1] = new FiveXFive_Player<char>("", 'O');
         break;
     case 2:
         players[1] = new FiveXFive_Random_Player<char>('O');
         break;
-    // case 3:
-    //     players[1] = new FIVEXFIVE_AI_Player<char>(player2Name, 'O');
-    //     players[1]->setBoard(B);
-    //     break;
+    case 3:
+        players[1] = new FIVEXFIVE_AI_Player<char>(" ", 'O');
+        players[1]->setBoard(B);
+        break;
     default:
+        delete B;
         cout << "Invalid choice for Player 2. Exiting the game.\n";
         return;
     }
 
     // Create the game manager and run the game
     GameManager<char> FiveXFive(B, players);
-    // cout << "output " << B->is_draw();
-    // cout << "output " << B->game_is_over();
     FiveXFive.run();
 
     // Clean up
@@ -451,10 +448,10 @@ void Sus()
     string player1Name, player2Name;
     Player<char> *players[2];
     Sus_Board<char> *B = new Sus_Board<char>();
-    cout << "Choose Player X type:\n";
+    cout << "Choose Player 1 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     if (choice == 1)
@@ -478,7 +475,7 @@ void Sus()
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     if (choice == 1)
@@ -525,7 +522,7 @@ void ultimateX_OGameMainRun()
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     switch (choice)
@@ -551,7 +548,7 @@ void ultimateX_OGameMainRun()
     cout << "Choose Player 2 type:\n";
     cout << "1. Human\n";
     cout << "2. Random Computer\n";
-    cout << "3. Smart Computer (AI)\n";
+    // cout << "3. Smart Computer (AI)\n";
     cin >> choice;
 
     switch (choice)

@@ -32,7 +32,7 @@ class Sus_Player : public Player<T>
 {
 private:
 public:
-    Sus_Player(std::string name, T symbol);
+    Sus_Player(string name, T symbol);
     void getmove(int &x, int &y);
 };
 

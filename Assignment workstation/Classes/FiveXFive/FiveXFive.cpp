@@ -26,28 +26,11 @@ FiveXFive_board<T>::FiveXFive_board()
 template <typename T>
 bool FiveXFive_board<T>::update_board(int x, int y, T mark)
 {
-    // if (AIundo)
+    // if ()
     // {
     //     cout << "im now undoing\n"
-    //          << "while winrev = " << winRev << "\n";
+    //          << "while  = " <<  << "\n";
     // }
-    if (AIisX)
-    {
-        dif1 = count_lines('X') - count_lines('O');
-    }
-    else
-    {
-        dif1 = count_lines('O') - count_lines('X');
-    }
-    if (AIundo && winRev)
-    {
-        winRev = false;
-    }
-    if (winRev && !AIundo)
-    {
-        last = !last;
-        return true;
-    }
     if (!(x < 0 || x >= this->rows || y < 0 || y >= this->columns) && (this->board[x][y] == ' ' || mark == ' '))
     {
         if (mark == ' ')
@@ -59,7 +42,14 @@ bool FiveXFive_board<T>::update_board(int x, int y, T mark)
         {
             this->n_moves++;
             this->board[x][y] = toupper(mark);
-            last = !last;
+        }
+        if (AIisX)
+        {
+            dif1 = count_lines('X') - count_lines('O');
+        }
+        else
+        {
+            dif1 = count_lines('O') - count_lines('X');
         }
         // cout << " n moves --> " << this->n_moves << "\n";
         return true;
@@ -169,7 +159,7 @@ int FiveXFive_board<T>::count_lines(T symbol)
 template <typename T>
 bool FiveXFive_board<T>::is_win()
 {
-    if (this->n_moves == 24 || winRev)
+    if (this->n_moves == 24)
     {
         set<char> s;
         for (int i = 0; i < this->rows; i++)
@@ -190,16 +180,20 @@ bool FiveXFive_board<T>::is_win()
         }
         int xlines = count_lines(a[1]); // x after o
         int ylines = count_lines(a[0]);
-        if (xlines > ylines && last || xlines < ylines && !last)
+        cout << "X lines are " << xlines << " " << "/  O lines are " << ylines << "\n";
+        if (xlines > ylines)
         {
-            cout << "X lines are " << xlines << " " << "O lines are " << ylines << "\n";
-            return true;
+            cout << this->name1;
         }
-        else if ((xlines < ylines && last) || (xlines > ylines && !last))
+        else if (xlines < ylines)
         {
-            winRev = true;
+            cout << this->name2;
+        }
+        else
+        {
             return false;
         }
+        return true;
     }
 
     return false;
@@ -208,8 +202,6 @@ bool FiveXFive_board<T>::is_win()
 template <typename T>
 bool FiveXFive_board<T>::is_draw()
 {
-    if (winRev)
-        return false;
     return (this->n_moves == 24 && !is_win());
 }
 
@@ -235,8 +227,6 @@ FiveXFive_Player<T>::FiveXFive_Player(string name, T symbol) : Player<T>(name, s
 template <typename T>
 void FiveXFive_Player<T>::getmove(int &x, int &y)
 {
-    if (winRev)
-        return;
     cout << "\nPlease enter your move x and y (0 to 4) separated by spaces: ";
     cin >> x >> y;
 }
@@ -246,7 +236,7 @@ FiveXFive_Random_Player<T>::FiveXFive_Random_Player(T symbol)
     : RandomPlayer<T>(symbol) // Pass symbol to the base class constructor
 {
     this->dimension = 5;
-    this->name = "Random Computer Player";
+    // this->name = " (Random Computer Player)";
     srand(static_cast<unsigned int>(time(0))); // Seed the random number generator
 }
 

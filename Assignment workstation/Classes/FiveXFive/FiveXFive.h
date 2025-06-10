@@ -4,15 +4,14 @@
 #include "../../BoardGame_Classes.h"
 
 #pragma once
-bool winRev = false;
-bool AIundo = false;
 bool AIisX = true;
 int dif1 = 0;
 template <typename T>
 class FiveXFive_board : public Board<T>
 {
 public:
-    bool last = false;
+    string name1, name2;
+    
     FiveXFive_board();
     bool update_board(int x, int y, T symbol);
     void display_board();

@@ -161,13 +161,12 @@ void Sus_Board<T>::display_board()
 template <typename T>
 bool Sus_Board<T>::is_win()
 {
-
     if (counterp1 > counterp2 && this->n_moves == 9)
     {
         cout << this->name1;
         return true;
     }
-    else if (counterp1 > counterp2 && this->n_moves == 9)
+    else if (counterp1 < counterp2 && this->n_moves == 9)
     {
         cout << this->name2;
         return true;
